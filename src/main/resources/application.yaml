@@ -1,0 +1,22 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://${BOOK_CLUB_DB_HOST}/${BOOK_CLUB_DB_NAME:book_club}
+    username: ${BOOK_CLUB_DB_USERNAME:postgres}
+    password: ${BOOK_CLUB_DB_PASSWORD}
+
+server:
+  port: ${BOOK_CLUB_REACTIVE_APP_PORT:8444}
+  ssl:
+    key-store-type: ${BC_KEYSTORE_TYPE:PKCS12}
+    key-store: ${BC_KEYSTORE:classpath:BBCMDev.p12}
+    key-store-password: ${BC_KEYSTORE_PW:bbcmDev}
+    key-alias: ${BC_KEYSTORE_ALIAS:BBCMDev}
+
+security:
+  require-ssl: true
+
+app:
+  properties:
+    secret_key: ${BOOK_CLUB_SECRET_KEY}
+    auth_cookie_name: ${BOOK_CLUB_AUTH_COOKIE:bbcm_auth}
+    refresh_cookie_name: ${BOOK_CLUB_REFRESH_COOKIE:bbcm_refresh}
