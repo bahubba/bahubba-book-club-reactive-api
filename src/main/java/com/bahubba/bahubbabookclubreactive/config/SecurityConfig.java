@@ -22,7 +22,8 @@ public class SecurityConfig {
 
     private final ReactiveAuthenticationManager authenticationManager;
 
-    private final JwtAuthenticationFilter jwtAuthFilter;
+    // TODO  - Implement JWT authorization with jose or other reactive JWT library
+//    private final JwtAuthenticationFilter jwtAuthFilter;
 
     /**
      * Sets up security for the application
@@ -34,15 +35,10 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http
-            .authorizeExchange(
-                authorizeExchange -> authorizeExchange
-                    .anyExchange()
-                    .authenticated()
-            )
             .httpBasic(Customizer.withDefaults())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authenticationManager(authenticationManager)
-            .addFilterBefore(jwtAuthFilter, SecurityWebFiltersOrder.FIRST)
+//            .addFilterBefore(jwtAuthFilter, SecurityWebFiltersOrder.FIRST)
             .build();
     }
 

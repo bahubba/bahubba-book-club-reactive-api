@@ -5,15 +5,15 @@ spring:
     password: ${BOOK_CLUB_DB_PASSWORD}
 
 server:
-  port: ${BOOK_CLUB_REACTIVE_APP_PORT:8444}
-  ssl:
-    key-store-type: ${BC_KEYSTORE_TYPE:PKCS12}
-    key-store: ${BC_KEYSTORE:classpath:BBCMDev.p12}
-    key-store-password: ${BC_KEYSTORE_PW:bbcmDev}
-    key-alias: ${BC_KEYSTORE_ALIAS:BBCMDev}
+  port: 8000 #${BOOK_CLUB_REACTIVE_APP_PORT:8444}
+#  ssl:
+#    key-store-type: ${BC_KEYSTORE_TYPE:PKCS12}
+#    key-store: ${BC_KEYSTORE:classpath:BBCMDev.p12}
+#    key-store-password: ${BC_KEYSTORE_PW:bbcmDev}
+#    key-alias: ${BC_KEYSTORE_ALIAS:BBCMDev}
 
-security:
-  require-ssl: true
+#security:
+#  require-ssl: true
 
 app:
   properties:

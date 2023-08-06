@@ -1,5 +1,6 @@
 package com.bahubba.bahubbabookclubreactive.model.entity;
 
+import com.bahubba.bahubbabookclubreactive.model.enums.Role;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 /**
