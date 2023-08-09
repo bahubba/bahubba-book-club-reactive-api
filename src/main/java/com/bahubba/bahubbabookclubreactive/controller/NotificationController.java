@@ -13,7 +13,6 @@ import java.time.Duration;
 
 @RestController
 @RequestMapping("/api/v1/notification")
-@Log4j2 // DELETEME
 public class NotificationController {
     @Autowired
     private NotificationService notificationService;
@@ -21,11 +20,5 @@ public class NotificationController {
     @GetMapping(value = "/count-new", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<Long> getUnviewedNotificationCount() {
         return notificationService.getUnviewedNotificationCount();
-    }
-
-    @GetMapping(value = "/test", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<Long> test() {
-        log.info("Yo, we're here in test"); // DELETEME
-        return notificationService.test();
     }
 }
