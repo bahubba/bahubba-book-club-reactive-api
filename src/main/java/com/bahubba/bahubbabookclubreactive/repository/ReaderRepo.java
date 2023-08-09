@@ -1,6 +1,5 @@
 package com.bahubba.bahubbabookclubreactive.repository;
 
-import com.bahubba.bahubbabookclubreactive.model.entity.Reader;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
