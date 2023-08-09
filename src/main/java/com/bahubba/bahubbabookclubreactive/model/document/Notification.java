@@ -1,7 +1,7 @@
 package com.bahubba.bahubbabookclubreactive.model.document;
 
-import com.bahubba.bahubbabookclubreactive.model.document.subdocument.BookClubMember;
-import com.bahubba.bahubbabookclubreactive.model.document.validator.PublicityConstraint;
+import com.bahubba.bahubbabookclubreactive.model.document.subdocument.NotificationView;
+import com.bahubba.bahubbabookclubreactive.model.document.validator.NotificationTypeConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,21 +14,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Document(collection = "bookClubs")
+@Document(collection = "notifications")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookClub {
+public class Notification {
     @Id
     private UUID id;
-    private String name;
-    private String description = "A book club for reading books";
-    private String imageURL;
-    @PublicityConstraint
-    private String publicity;
-    private List<BookClubMember> members;
+    private Reader sourceReader;
+    private Reader targetReader;
+    private BookClub bookClub;
+    @NotificationTypeConstraint
+    private String type;
+    private String actionLink;
     @CreatedDate
-    private Date created;
-    private Date disbanded;
+    private Date generated;
+    private List<NotificationView> views;
 }

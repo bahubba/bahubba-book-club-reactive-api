@@ -1,5 +1,6 @@
 package com.bahubba.bahubbabookclubreactive.model.mapper;
 
+import com.bahubba.bahubbabookclubreactive.model.document.Reader;
 import com.bahubba.bahubbabookclubreactive.model.dto.ReaderDTO;
 import com.bahubba.bahubbabookclubreactive.model.mapper.custom.PasswordEncoderMapper;
 import lombok.Generated;

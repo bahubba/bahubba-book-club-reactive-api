@@ -1,6 +1,8 @@
 package com.bahubba.bahubbabookclubreactive.model.document;
 
+import com.bahubba.bahubbabookclubreactive.model.document.validator.RoleConstraint;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -17,6 +19,7 @@ import java.util.UUID;
 
 @Document(collection = "readers")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reader implements UserDetails {
@@ -24,6 +27,9 @@ public class Reader implements UserDetails {
     private UUID id;
     private String username;
     private String email;
+    @RoleConstraint
+    private String role;
+    private String password;
     private String givenName;
     private String middleName;
     private String surname;
@@ -32,12 +38,11 @@ public class Reader implements UserDetails {
     @CreatedDate
     private Date joined;
     private Date departed;
-    private String password;
 
     // TODO - Add Role "enum" (MongoDB validation, really) with admin and reader
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("READER"));
+        return List.of(new SimpleGrantedAuthority(getRole()));
     }
 
     @Override
