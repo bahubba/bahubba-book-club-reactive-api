@@ -22,8 +22,7 @@ public class SecurityConfig {
 
     private final ReactiveAuthenticationManager authenticationManager;
 
-    // TODO  - Implement JWT authorization with jose or other reactive JWT library
-//    private final JwtAuthenticationFilter jwtAuthFilter;
+    private final JwtAuthenticationFilter jwtAuthFilter;
 
     /**
      * Sets up security for the application
@@ -38,7 +37,7 @@ public class SecurityConfig {
             .httpBasic(Customizer.withDefaults())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authenticationManager(authenticationManager)
-//            .addFilterBefore(jwtAuthFilter, SecurityWebFiltersOrder.FIRST)
+            .addFilterBefore(jwtAuthFilter, SecurityWebFiltersOrder.FIRST)
             .build();
     }
 

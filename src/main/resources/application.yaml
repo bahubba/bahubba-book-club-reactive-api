@@ -1,8 +1,7 @@
 spring:
-  r2dbc:
-    url: r2dbc:postgresql://${BOOK_CLUB_DB_HOST}/${BOOK_CLUB_DB_NAME:book_club}
-    username: ${BOOK_CLUB_DB_USERNAME:postgres}
-    password: ${BOOK_CLUB_DB_PASSWORD}
+  data:
+    mongodb:
+      uri: mongodb+srv://${BOOK_CLUB_MONGO_USERNAME:bbcmDev}:${BOOK_CLUB_MONGO_PASSWORD}@${BOOK_CLUB_MONGO_CLUSTER}.lltxz.mongodb.net/${BOOK_CLUB_MONGO_DB}?retryWrites=true&w=majority
 
 server:
   port: 8000 #${BOOK_CLUB_REACTIVE_APP_PORT:8444}

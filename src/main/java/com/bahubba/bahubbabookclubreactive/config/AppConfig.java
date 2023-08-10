@@ -8,11 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import reactor.core.publisher.Mono;
 
 /**
  * Configures beans to be used within the application
@@ -23,17 +20,7 @@ import reactor.core.publisher.Mono;
 public class AppConfig {
 
     private final ReaderRepo readerRepo;
-
-    /**
-     * Creates a ReactiveUserDetailsService for loading users by username
-     * @return ReactiveUserDetailsService
-     */
-    @Bean
-    public ReactiveUserDetailsService userDetailsService() {
-        return username -> readerRepo.findByUsername(username)
-            .switchIfEmpty(Mono.error(new UsernameNotFoundException("User not found")))
-            .cast(UserDetails.class);
-    }
+    private final ReactiveUserDetailsService userDetailsService;
 
     /**
      * Creates a ReactiveAuthenticationManager
@@ -42,7 +29,7 @@ public class AppConfig {
     @Bean
     public ReactiveAuthenticationManager reactiveAuthenticationManager() {
         UserDetailsRepositoryReactiveAuthenticationManager authenticationManager =
-            new UserDetailsRepositoryReactiveAuthenticationManager(userDetailsService());
+            new UserDetailsRepositoryReactiveAuthenticationManager(userDetailsService);
         authenticationManager.setPasswordEncoder(passwordEncoder());
         return authenticationManager;
     }
